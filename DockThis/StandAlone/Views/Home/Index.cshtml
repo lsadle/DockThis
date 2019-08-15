@@ -3,6 +3,31 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-2">Welcome</h1>
+    <h2 class="display-4">Please, click the button.....I dare you</h2>
+    <div class="container" style="margin:auto;">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-2">
+                <button id="countBtn" class="btn btn-primary">Click me to count!</button>
+            </div>
+            <div class="col-md-1">
+                <label id="countLbl" style="font-size:25px" class="text-center font-weight-bold">0</label>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#countBtn").click(function()
+        {
+            var lblTxt = $('#countLbl').text();
+            var upBy = 1;
+            if (lblTxt.length > 1) {
+                upBy = Math.max(parseInt(lblTxt.charAt(0)), upBy); 
+            }
+            var count = parseInt(lblTxt) + upBy;
+            $('#countLbl').text(count);
+        });
+    });
+</script>
