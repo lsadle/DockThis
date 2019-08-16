@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Api;
+using Common.Api.Interfaces;
+using Common.Utility;
+using Common.Utility.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -51,6 +55,8 @@ namespace Simplicity
                     });
 
             services.AddSingleton<IAuthService, AuthService>();
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IApiCaller, ApiCaller>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

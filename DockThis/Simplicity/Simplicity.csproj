@@ -16,7 +16,7 @@
 
 
   <ItemGroup>
-    <Folder Include="Utility\" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
 </Project>
