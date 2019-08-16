@@ -1,0 +1,46 @@
+﻿@model CreateAccountModel
+@{
+    ViewData["Title"] = "CreateAccount";
+}
+<div class="container" style="margin-top:25px">
+    <h1>You must login to continue</h1>
+    @if (Model?.UsernameTaken == true)
+    {
+        <label class="text-danger">The username you entered was already taken</label>
+    }
+    <form method="post" style="margin-top:25px">
+        <div class="row">
+            <div class="col-md-3" style="margin-left:25px;">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(m => m.Username, null, new { @class = "font-weight-bold" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Username)
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-3">
+                        @Html.LabelFor(m => m.Password, null, new { @class = "font-weight-bold" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Password)
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-4">
+                        <input class="btn btn-primary" type="submit" value="Create" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-top:auto; margin-bottom:auto;">
+                @Html.ValidationSummary(null, new { @class = "text-danger" })
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+
+

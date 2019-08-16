@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Simplicity.Services;
+using Simplicity.Services.Interfaces;
 
-namespace StandAlone
+namespace Simplicity
 {
     public class Startup
     {
@@ -30,8 +35,22 @@ namespace StandAlone
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddMvc(options =>
+                {
+                    // All endpoints need authentication
+                    options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+                    options =>
+                    {
+                        options.LoginPath = new PathString("/auth/login");
+                        options.LogoutPath = new PathString("/auth/logout");
+                    });
+
+            services.AddSingleton<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +59,7 @@ namespace StandAlone
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
