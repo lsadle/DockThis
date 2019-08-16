@@ -21,11 +21,11 @@ namespace Common.Utility
         {
             var fullEndpoint = $"{Endpoints.Base}{endpoint}";
             var request = new HttpRequestMessage(method, fullEndpoint);
-            request.Headers.Add("Content-Type", "application/json");
 
             if (content != null)
             {
                 request.Content = new StringContent(JsonConvert.SerializeObject(content));
+                request.Content.Headers.Add("Content-Type", "application/json");
             }
 
             var response = await _client.SendAsync(request);
