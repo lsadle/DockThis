@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Api;
@@ -11,21 +12,23 @@ namespace Common.Utility
 {
     public class ApiCaller : IApiCaller
     {
+        private readonly string _dbApiBase;
         private readonly HttpClient _client;
-        public ApiCaller()
+        public ApiCaller(string dbApiBase)
         {
+            _dbApiBase = dbApiBase;
             _client = new HttpClient();
         }
 
         private async Task<HttpResponseMessage> MakeRequest(HttpMethod method, string endpoint, object content = null)
         {
-            var fullEndpoint = $"{Endpoints.Base}{endpoint}";
+            var fullEndpoint = $"{_dbApiBase}{endpoint}";
             var request = new HttpRequestMessage(method, fullEndpoint);
 
             if (content != null)
             {
                 request.Content = new StringContent(JsonConvert.SerializeObject(content));
-                request.Content.Headers.Add("Content-Type", "application/json");
+                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
             }
 
             var response = await _client.SendAsync(request);

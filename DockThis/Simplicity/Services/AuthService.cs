@@ -27,7 +27,7 @@ namespace Simplicity.Services
 
             string hashed = CreateHash(password, user.Salt);
 
-            if (hashed == password)
+            if (hashed == user.Password)
             {
                 return true;
             }

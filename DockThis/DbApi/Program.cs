@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Simplicity
+namespace DbApi
 {
     public class Program
     {
@@ -19,13 +19,13 @@ namespace Simplicity
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((builderContext, config) =>
+                .ConfigureAppConfiguration((builderContext, config) =>
                 {
                     config.SetBasePath(Directory.GetCurrentDirectory());
                     config.AddJsonFile("appsettings.json", false, true);
                     config.AddJsonFile($"appsettings.{builderContext.HostingEnvironment.EnvironmentName}.json", true, true);
                     config.AddEnvironmentVariables();
                 })
-            .UseStartup<Startup>();
+                .UseStartup<Startup>();
     }
 }

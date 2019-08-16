@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Simplicity.Models;
 using Simplicity.Services;
 using Simplicity.Services.Interfaces;
 
@@ -54,9 +55,12 @@ namespace Simplicity
                         options.LogoutPath = new PathString("/auth/logout");
                     });
 
+            var dbApiSettings = new DbApiSettingsModel();
+            Configuration.Bind("DbApi", dbApiSettings);
+
             services.AddSingleton<IAuthService, AuthService>();
             services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IApiCaller, ApiCaller>();
+            services.AddSingleton<IApiCaller>(new ApiCaller(dbApiSettings.Base));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
