@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DbApi.Database;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -30,7 +32,7 @@ namespace DbApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            var connectionString = @"";
+            var connectionString = GetConnectionString();
             services.AddDbContext<DockThisContext>
                 (options => options.UseSqlServer(connectionString));
 
@@ -42,6 +44,34 @@ namespace DbApi
         {
             app.UseDeveloperExceptionPage();
             app.UseMvc();
+        }
+
+        private string GetConnectionString()
+        {
+            const string name = "DockThisDbConnection";
+            const string dockerSecretsPath = "/run/secrets/";
+            string connectionString = null;
+
+            if (Directory.Exists(dockerSecretsPath))
+            {
+                IFileProvider provider = new PhysicalFileProvider(dockerSecretsPath);
+                IFileInfo fileInfo = provider.GetFileInfo(name);
+                if (fileInfo.Exists)
+                {
+                    using (var stream = fileInfo.CreateReadStream())
+                    using (var streamReader = new StreamReader(stream))
+                    {
+                        connectionString = streamReader.ReadToEnd();
+                    }
+                }
+            }
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                connectionString = Configuration[name];
+            }
+
+            return connectionString;
         }
     }
 }

@@ -1,0 +1,15 @@
+version: '1.0'
+
+services:
+  standalone:
+    build: ./StandAlone
+    ports: 
+      - "8080:80"
+  simplicity:
+    build: ./Simplicity
+    ports: 
+      - "8081:80"
+  dbapi:
+    build: ./DbApi
+    secrets:
+      - DockThisDbConnection

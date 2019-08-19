@@ -4,10 +4,10 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
-COPY ["DbApi/DbApi.csproj", "DbApi/"]
+COPY ["DbApi.csproj", "DbApi/"]
 RUN dotnet restore "DbApi/DbApi.csproj"
 COPY . .
-WORKDIR "/src/DbApi"
+WORKDIR "/src"
 RUN dotnet build "DbApi.csproj" -c Release -o /app
 
 FROM build AS publish
