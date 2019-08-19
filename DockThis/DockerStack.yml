@@ -22,3 +22,7 @@ services:
     build: ./DbApi
     secrets:
       - DockThisDbConnection
+
+secrets:
+  DockThisDbConnection:
+    file: ./DockThisDbConnection.txt
