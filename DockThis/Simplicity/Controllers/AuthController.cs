@@ -37,7 +37,6 @@ namespace Simplicity.Controllers
         }
 
         [HttpPost]
-        [Route("")]
         [Route("Login")]
         public async Task<IActionResult> Login(LoginModel model)
         {
@@ -72,7 +71,6 @@ namespace Simplicity.Controllers
         }
 
         [HttpGet]
-        [Route("")]
         [Route("Logout")]
         public async Task<IActionResult> Logout()
         {
@@ -83,7 +81,6 @@ namespace Simplicity.Controllers
         }
 
         [HttpGet]
-        [Route("")]
         [Route("CreateAccount")]
         public IActionResult CreateAccount()
         {
@@ -91,7 +88,6 @@ namespace Simplicity.Controllers
         }
 
         [HttpPost]
-        [Route("")]
         [Route("CreateAccount")]
         public async Task<IActionResult> CreateAccount(CreateAccountModel model)
         {

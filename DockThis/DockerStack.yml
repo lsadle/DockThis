@@ -4,14 +4,14 @@ services:
   standalone:
     deploy:
       replicas: 1
-    image: standalone:1.4
+    image: standalone:1.5
     build: ./StandAlone
     ports: 
       - "8080:80"
   simplicity:
     deploy:
       replicas: 3
-    image: simplicity:1.2
+    image: simplicity:1.3
     build: ./Simplicity
     ports: 
       - "8081:80"
