@@ -1,9 +1,9 @@
 #!/bin/bash
 
-STANDALONETAG=${1:latest}
-SIMPLICITYTAG=${2:latest}
-DBAPITAG=${3:latest}
-NETWORKNAME=${4:mydocnetwork}
+STANDALONETAG=${1?latest}
+SIMPLICITYTAG=${2?latest}
+DBAPITAG=${3?latest}
+NETWORKNAME=${4?mydocnetwork}
 	
 echo "Building: standalone:$STANDALONETAG"
 docker build -t standalone:$STANDALONETAG -f StandAloneDockerfile .
@@ -17,5 +17,5 @@ docker build -t dbapi:$DBAPITAG -f DbApiDockerfile .
 echo "Pruning images"
 docker image prune -f
 
-echo "deploying"
-docker stack deploy --compose-file DockerStack.yml $NETWORKNAME
+echo "Build complete"
+echo "To deploy, run   docker stack deploy --compose-file DockerStack.yml $NETWORKNAME"

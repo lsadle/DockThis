@@ -11,7 +11,7 @@ services:
   simplicity:
     deploy:
       replicas: 3
-    image: simplicity:1.1
+    image: simplicity:1.2
     build: ./Simplicity
     ports: 
       - "8081:80"
