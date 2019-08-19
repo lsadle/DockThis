@@ -49,9 +49,12 @@ namespace DbApi
         private string GetConnectionString()
         {
             const string name = "DockThisDbConnection";
-            const string dockerSecretsPath = "/run/secrets/";
             string connectionString = null;
 
+#if DEBUG
+            connectionString = Configuration[name];
+#else
+            const string dockerSecretsPath = "/run/secrets/";
             if (Directory.Exists(dockerSecretsPath))
             {
                 IFileProvider provider = new PhysicalFileProvider(dockerSecretsPath);
@@ -65,11 +68,7 @@ namespace DbApi
                     }
                 }
             }
-
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                connectionString = Configuration[name];
-            }
+#endif
 
             return connectionString;
         }
