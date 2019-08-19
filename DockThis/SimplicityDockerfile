@@ -7,7 +7,7 @@ WORKDIR /src
 COPY ["./Common/Common.csproj", "Common/"]
 COPY ["./Simplicity/Simplicity.csproj", "Simplicity/"]
 RUN dotnet restore "Common/Common.csproj"
-RUN dotnet restore "Simplicity/Simplicity.csproj"
+RUN dotnet restore "./SimplicitySimplicity/Simplicity.csproj"
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "Simplicity.csproj" -c Release -o /app

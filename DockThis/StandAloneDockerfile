@@ -8,7 +8,7 @@ COPY ["./StandAlone/StandAlone.csproj", "StandAlone/"]
 RUN dotnet restore "StandAlone/StandAlone.csproj"
 COPY . .
 WORKDIR "/src"
-RUN dotnet build "StandAlone.csproj" -c Release -o /app
+RUN dotnet build "./StandAlone/StandAlone.csproj" -c Release -o /app
 
 FROM build AS publish
 RUN dotnet publish "StandAlone.csproj" -c Release -o /app

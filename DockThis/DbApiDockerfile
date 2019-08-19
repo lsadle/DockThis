@@ -7,7 +7,7 @@ WORKDIR /src
 COPY ["./Common/Common.csproj", "Common/"]
 COPY ["./DbApi/DbApi.csproj", "DbApi/"]
 RUN dotnet restore "Common/Common.csproj"
-RUN dotnet restore "DbApi/DbApi.csproj"
+RUN dotnet restore "./DbApiDbApi/DbApi.csproj"
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "DbApi.csproj" -c Release -o /app
