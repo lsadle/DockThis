@@ -4,21 +4,21 @@ services:
   standalone:
     deploy:
       replicas: 1
-    image: standalone:1.3
+    image: standalone:1.4
     build: ./StandAlone
     ports: 
       - "8080:80"
   simplicity:
     deploy:
       replicas: 3
-    image: simplicity:1.0
+    image: simplicity:1.1
     build: ./Simplicity
     ports: 
       - "8081:80"
   dbapi:
     deploy:
       replicas: 3
-    image: dbapi:1.0
+    image: dbapi:1.1
     build: ./DbApi
     secrets:
       - DockThisDbConnection
