@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08A9659F-926C-4A7D-B07E-B3B6E0933235}"
 	ProjectSection(SolutionItems) = preProject
 		DbApiDockerfile = DbApiDockerfile
+		DockerBuild = DockerBuild
 		DockerStack.yml = DockerStack.yml
 		SimplicityDockerfile = SimplicityDockerfile
 		StandAloneDockerfile = StandAloneDockerfile
