@@ -25,4 +25,4 @@ services:
 
 secrets:
   DockThisDbConnection:
-    file: ./DockThisDbConnection.txt
+    external: true
