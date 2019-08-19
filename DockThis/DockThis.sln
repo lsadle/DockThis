@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbApi", "DbApi\DbApi.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08A9659F-926C-4A7D-B07E-B3B6E0933235}"
 	ProjectSection(SolutionItems) = preProject
-		DockerStack.yml = DockerStack.yml
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Global
