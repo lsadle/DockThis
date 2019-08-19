@@ -11,9 +11,9 @@ WORKDIR "/src"
 RUN dotnet build "./StandAlone/StandAlone.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "StandAlone.csproj" -c Release -o /app
+RUN dotnet publish "./StandAlone/StandAlone.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "StandAlone.dll"]
+ENTRYPOINT ["dotnet", "./StandAlone/StandAlone.dll"]

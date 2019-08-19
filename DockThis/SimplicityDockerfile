@@ -7,15 +7,15 @@ WORKDIR /src
 COPY ["./Common/Common.csproj", "Common/"]
 COPY ["./Simplicity/Simplicity.csproj", "Simplicity/"]
 RUN dotnet restore "Common/Common.csproj"
-RUN dotnet restore "./SimplicitySimplicity/Simplicity.csproj"
+RUN dotnet restore "./Simplicity/Simplicity.csproj"
 COPY . .
 WORKDIR "/src"
-RUN dotnet build "Simplicity.csproj" -c Release -o /app
+RUN dotnet build "./Simplicity/Simplicity.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "Simplicity.csproj" -c Release -o /app
+RUN dotnet publish "./Simplicity/Simplicity.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Simplicity.dll"]
+ENTRYPOINT ["dotnet", "./Simplicity/Simplicity.dll"]

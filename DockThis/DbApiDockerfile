@@ -7,15 +7,15 @@ WORKDIR /src
 COPY ["./Common/Common.csproj", "Common/"]
 COPY ["./DbApi/DbApi.csproj", "DbApi/"]
 RUN dotnet restore "Common/Common.csproj"
-RUN dotnet restore "./DbApiDbApi/DbApi.csproj"
+RUN dotnet restore "./DbApi/DbApi/DbApi.csproj"
 COPY . .
 WORKDIR "/src"
-RUN dotnet build "DbApi.csproj" -c Release -o /app
+RUN dotnet build "./DbApi/DbApi.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "DbApi.csproj" -c Release -o /app
+RUN dotnet publish "./DbApi/DbApi.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "DbApi.dll"]
+ENTRYPOINT ["dotnet", "./DbApi/DbApi.dll"]
