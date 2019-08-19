@@ -1,9 +1,9 @@
 #!/bin/bash
 
-STANDALONETAG=${1?latest}
-SIMPLICITYTAG=${2?latest}
-DBAPITAG=${3?latest}
-NETWORKNAME=${4?mydocnetwork}
+STANDALONETAG=${1:latest}
+SIMPLICITYTAG=${2:latest}
+DBAPITAG=${3:latest}
+NETWORKNAME=${4:mydocnetwork}
 	
 echo "Building: standalone:$STANDALONETAG"
 docker build -t standalone:$STANDALONETAG -f StandAloneDockerfile .
