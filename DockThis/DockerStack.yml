@@ -2,16 +2,22 @@ version: '3.7'
 
 services:
   standalone:
+    deploy:
+      replicas: 1
     image: standalone:latest
     build: ./StandAlone
     ports: 
       - "8080:80"
   simplicity:
+    deploy:
+      replicas: 3
     image: simplicity:latest
     build: ./Simplicity
     ports: 
       - "8081:80"
   dbapi:
+    deploy:
+      replicas: 3
     image: dbapi:latest
     build: ./DbApi
     secrets:

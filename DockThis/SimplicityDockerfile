@@ -4,7 +4,9 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
-COPY ["Simplicity.csproj", "Simplicity/"]
+COPY ["./Common/Common.csproj", "Common/"]
+COPY ["./Simplicity/Simplicity.csproj", "Simplicity/"]
+RUN dotnet restore "Common/Common.csproj"
 RUN dotnet restore "Simplicity/Simplicity.csproj"
 COPY . .
 WORKDIR "/src"
