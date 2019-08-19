@@ -2,14 +2,17 @@ version: '3.7'
 
 services:
   standalone:
+    image: standalone:latest
     build: ./StandAlone
     ports: 
       - "8080:80"
   simplicity:
+    image: simplicity:latest
     build: ./Simplicity
     ports: 
       - "8081:80"
   dbapi:
+    image: dbapi:latest
     build: ./DbApi
     secrets:
       - DockThisDbConnection

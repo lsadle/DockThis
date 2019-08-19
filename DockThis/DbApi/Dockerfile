@@ -4,7 +4,9 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
+COPY ["Common.csproj", "../Common/"]
 COPY ["DbApi.csproj", "DbApi/"]
+RUN dotnet restore "Common/Common.csproj"
 RUN dotnet restore "DbApi/DbApi.csproj"
 COPY . .
 WORKDIR "/src"
