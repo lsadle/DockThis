@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.779
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandAlone", "StandAlone\StandAlone.csproj", "{462112BA-AB49-4289-80D6-5527B8119A76}"
 EndProject
@@ -13,12 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbApi", "DbApi\DbApi.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08A9659F-926C-4A7D-B07E-B3B6E0933235}"
 	ProjectSection(SolutionItems) = preProject
-		DbApiDockerfile = DbApiDockerfile
 		DockerBuild = DockerBuild
-		DockerStack.yml = DockerStack.yml
-		SimplicityDockerfile = SimplicityDockerfile
-		StandAloneDockerfile = StandAloneDockerfile
 	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{55205EF9-4388-49F6-BCE6-3AEC00CB8D99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +40,10 @@ Global
 		{E568EA97-C638-4FD3-8075-7E8DE418E673}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E568EA97-C638-4FD3-8075-7E8DE418E673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E568EA97-C638-4FD3-8075-7E8DE418E673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55205EF9-4388-49F6-BCE6-3AEC00CB8D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55205EF9-4388-49F6-BCE6-3AEC00CB8D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55205EF9-4388-49F6-BCE6-3AEC00CB8D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55205EF9-4388-49F6-BCE6-3AEC00CB8D99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

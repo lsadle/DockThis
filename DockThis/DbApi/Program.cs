@@ -25,6 +25,7 @@ namespace DbApi
                     config.AddJsonFile("appsettings.json", false, true);
                     config.AddJsonFile($"appsettings.{builderContext.HostingEnvironment.EnvironmentName}.json", true, true);
                     config.AddEnvironmentVariables();
+                    config.AddUserSecrets<Program>();
                 })
                 .UseStartup<Startup>();
     }

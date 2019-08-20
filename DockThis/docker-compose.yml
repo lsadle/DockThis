@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  standalone:
+    deploy:
+      replicas: 1
+    image: standalone:1.6
+    build: 
+      context: .
+      dockerfile: StandAlone/Dockerfile
+    ports: 
+      - "8080:80"
+  simplicity:
+    deploy:
+      replicas: 3
+    image: simplicity:1.4
+    build: 
+      context: .
+      dockerfile: Simplicity/Dockerfile
+    ports: 
+      - "8081:80"
+  dbapi:
+    deploy:
+      replicas: 3
+    image: dbapi:1.2
+    build:
+      context: .
+      dockerfile: DbApi/Dockerfile
+    secrets:
+      - DockThisDbConnection
+
+secrets:
+  DockThisDbConnection:
+    external: true

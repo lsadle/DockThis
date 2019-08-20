@@ -50,6 +50,10 @@ namespace DbApi
         {
             const string name = "DockThisDbConnection";
             string connectionString = null;
+            var dirs = Directory.GetDirectories(Directory.GetCurrentDirectory());
+            var dirs0 = Directory.GetDirectories("/");
+            var dirs1 = Directory.GetDirectories("../");
+            var dirs2 = Directory.GetDirectories("../run");
 
 #if DEBUG
             connectionString = Configuration[name];
@@ -69,6 +73,10 @@ namespace DbApi
                 }
             }
 #endif
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new Exception($"Could not find connection string under '{name}'");
+            }
 
             return connectionString;
         }
